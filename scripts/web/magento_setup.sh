@@ -29,7 +29,10 @@ if [ ! -f ".vagrantlocks/magentoinstall" ] && [ -f "/usr/local/bin/n98-magerun.p
 	mv /var/www/html/media /shared/website/
 	chown -R wwwusr:wwwusr /shared/website/media/
 	chmod -R 777 /shared/website/media/
-	ln -s /shared/website/media /var/www/html/media
+	rm -rf /var/www/html/media
+	ln -s /shared/website/media/ /var/www/html/media
+	rm -rf /var/www/html/var/session
+	ln -s /shared/sessions/ /var/www/html/var/session
 
 	echo "Adding the Magento Performance Toolkit from https://github.com/aepod/magento-performance-toolkit "
 	cd /root/

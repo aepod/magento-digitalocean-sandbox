@@ -8,21 +8,19 @@ puppet_ip = "127.0.0.1"
 Vagrant.configure(2) do |config|
   config.vm.box = "digital_ocean"
   config.ssh.insert_key = 'true'
-  #config.ssh.private_key_path = "c:\Users\aepod\.ssh\id_rsa"
 
   config.vm.provider :digital_ocean do |provider, override|
 	# Set the token to your token you generated
     provider.token = 'TOKEN'
-	# Point this to your local key
-    override.ssh.private_key_path = '~/.ssh/id_rsa'
-	
+
 	# Do not change the other values here
+    override.ssh.private_key_path = '~/.ssh/id_rsa'
     override.vm.box = 'digital_ocean'
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"	
     provider.image = 'centos-6-5-x64'
     provider.region = 'nyc3'
 	provider.private_networking = true
-    provider.size = '512mb'
+    provider.size = '512mb' 
 	
   end  
   
@@ -51,6 +49,7 @@ Vagrant.configure(2) do |config|
 	config.vm.provider :digital_ocean do |provider, override|
 		provider.size = '2gb'
 	  end  
+	monolith.vm.provision "shell", path: "scripts/output_status.sh", args: "monolith"	
   end     
   
   
@@ -76,6 +75,7 @@ Vagrant.configure(2) do |config|
     web.vm.provision "shell", path: "scripts/initial_addpuppet.sh", args: "#{puppet_ip}"
 	web.vm.provision "shell", path: "scripts/web/magento_setup.sh"
 	web.vm.provision "shell", path: "scripts/web/initial_setup.sh"	
+	web.vm.provision "shell", path: "scripts/output_status.sh", args: "web"	
   end    
  
   # BOX: render[n]
@@ -114,6 +114,7 @@ Vagrant.configure(2) do |config|
 	jmeter.vm.provision "shell", path: "scripts/initial_common.sh"
 	jmeter.vm.provision "shell", path: "scripts/initial_addpuppet.sh", args: "#{puppet_ip}"
 	jmeter.vm.provision "shell", path: "scripts/jmeter/initial_setup.sh"
+	jmeter.vm.provision "shell", path: "scripts/output_status.sh", args: "jmeter"	
   end  
  
  
