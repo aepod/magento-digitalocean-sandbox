@@ -12,13 +12,15 @@ class daemons::nginx::php ( ) {
 		"php-xml":
 			ensure => present;
 		"php-gd":
+			ensure => present;		
+		"php-mbstring":
 			ensure => present;
 		"php-mcrypt":
 			ensure => present;
 		"php-domxml-php4-php5":
-				ensure => present;
+			ensure => present;
 		"php-soap":
-				ensure => present;
+			ensure => present;
 			
 	}
 

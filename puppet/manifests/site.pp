@@ -36,6 +36,15 @@ include utilities::nscd
 include utilities::useful
 include utilities::rootpw
   
+if $newrelicLicenseKey == '' {
+  notice( 'Set a Newrelic License key on puppet server to use Newrelic.' )
+}
+else  {
+	 class {'newrelic::server::linux':
+	   newrelic_license_key => $newrelicLicenseKey,
+	 }
+}
+
 node 'puppet' {
 
 }
@@ -117,10 +126,6 @@ node 'monolith' {
 	}
 	else  {
 		$newrelicAppname = 'Magento Monolith'
-		 class {'newrelic::server::linux':
-		   newrelic_license_key => $newrelicLicenseKey,
-		 }
-
 		 class {'newrelic::agent::php':
 		   newrelic_license_key  => $newrelicLicenseKey,
 		   newrelic_ini_appname  => $newrelicAppname,
@@ -148,10 +153,6 @@ node /render\d+.*/ {
 	}
 	else  {
 		$newrelicAppname = 'Magento Cluster'
-		 class {'newrelic::server::linux':
-		   newrelic_license_key => $newrelicLicenseKey,
-		 }
-
 		 class {'newrelic::agent::php':
 		   newrelic_license_key  => $newrelicLicenseKey,
 		   newrelic_ini_appname  => $newrelicAppname,
@@ -206,10 +207,6 @@ class { 'haproxy':
 	}
 	else  {
 		$newrelicAppname = 'Magento Cluster'
-		 class {'newrelic::server::linux':
-		   newrelic_license_key => $newrelicLicenseKey,
-		 }
-
 		 class {'newrelic::agent::php':
 		   newrelic_license_key  => $newrelicLicenseKey,
 		   newrelic_ini_appname  => $newrelicAppname,

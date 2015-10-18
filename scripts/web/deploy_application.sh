@@ -12,7 +12,8 @@ then
 	# Skip the nonesense, we are in a sandbox
 	# who needs a ssh-keyscan ?
 	ssh -oStrictHostKeyChecking=no root@render1 echo "hi" &> /dev/null  
-	ssh -oStrictHostKeyChecking=no root@render1 puppet agent -t
+	ssh root@render1 puppet agent -t
+	ssh root@render1 service php-fpm restart
 	rsync -a /var/www/html/ root@render1:/var/www/html/
 fi
 
@@ -22,7 +23,8 @@ then
 	# Skip the nonesense, we are in a sandbox
 	# who needs a ssh-keyscan ?
 	ssh -oStrictHostKeyChecking=no root@render2 echo "hi" &> /dev/null  
-	ssh -oStrictHostKeyChecking=no root@render2 puppet agent -t
+	ssh root@render2 puppet agent -t
+	ssh root@render2 service php-fpm restart
 	rsync -a /var/www/html/ root@render2:/var/www/html/
 fi
 
@@ -32,7 +34,8 @@ then
 	# Skip the nonesense, we are in a sandbox
 	# who needs a ssh-keyscan ?
 	ssh -oStrictHostKeyChecking=no root@render3 echo "hi" &> /dev/null  
-	ssh -oStrictHostKeyChecking=no root@render3 puppet agent -t
+	ssh root@render3 puppet agent -t
+	ssh root@render3 service php-fpm restart
 	rsync -a /var/www/html/ root@render3:/var/www/html/
 fi
 
@@ -42,6 +45,7 @@ then
   	# Skip the nonesense, we are in a sandbox
 	# who needs a ssh-keyscan ?
 	ssh -oStrictHostKeyChecking=no root@render4 echo "hi" &> /dev/null
-	ssh -oStrictHostKeyChecking=no root@render4 puppet agent -t
+	ssh root@render4 puppet agent -t
+	ssh root@render4 service php-fpm restart
 	rsync -a /var/www/html/ root@render4:/var/www/html/
 fi
