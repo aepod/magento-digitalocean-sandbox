@@ -21,11 +21,12 @@ To use this:
 1. Install vagrant
 2. Checkout from github
 3. CMD Prompt in the directory you checked out
-4. `vagrant up puppet` 
-5. Grab the internal IP and set it on line 6 in the Vagrantfile.  * DO NOT MISS THIS STEP *
-6. To stand up the cluster `vagrant up db web render1 jquery`
-7. Note the external IP of the Web node, set this ip to www.idealphp.com in in your local hosts file.
-8. Point your web browser or test scripts there
+4. Add your Digital Ocean token to Vagrantfile
+5. `vagrant up puppet` 
+6. Grab the internal IP and set it on line 6 in the Vagrantfile.  * DO NOT MISS THIS STEP *
+7. To stand up the cluster `vagrant up db web render1 jquery`
+8. Note the external IP of the Web node, set this ip to www.idealphp.com in in your local hosts file.
+9. Point your web browser or test scripts there
 
 ---
 Monolith: 
