@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :digital_ocean do |provider, override|
 	# Set the token to your token you generated
-    provider.token = '98c2274de2d5fe2bd5f5af986d20a1c4ac275dc0834ac9e663a908d70caea55d'
-	# Point this 
+    provider.token = 'TOKEN'
+	# Point this to your local key
     override.ssh.private_key_path = '~/.ssh/id_rsa'
 	
 	# Do not change the other values here
